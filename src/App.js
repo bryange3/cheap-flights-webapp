@@ -7,9 +7,9 @@ import FlightsInfo from './components/FlightsInfo';
 function App() {
   return (
     <div className="App">
-      <Header title="Airport Info"></Header>
+      <Header title="CheapFlights"></Header>
       <FlightsInfo></FlightsInfo>
-      <Footer title="2020"></Footer>
+      <Footer title="Find your cheapest flight!"></Footer>
     </div>
   );
 }

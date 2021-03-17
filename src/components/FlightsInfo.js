@@ -2,7 +2,14 @@ import React, { useState } from 'react';
 import './FlightsInfo.css';
 import Quotes from './Quotes';
 
-function FlightsInfo() {
+class FlightsInfo extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: props.projects
+        }
+    }
+    
     const [quotes, setQuotes] = useState([])
     const [country, setCountry] = useState("")
     const [currency, setCurrency] = useState("")
@@ -13,7 +20,7 @@ function FlightsInfo() {
     const [returnDate, setReturnDate] = useState("")
     const [showQuotes, setShowQuotes] = useState(false)
 
-    function handleSubmit(e) {
+    handleSubmit(e) {
         e.preventDefault()
         async function fetchMyAPI() {
             const reqOptions = {
@@ -24,6 +31,7 @@ function FlightsInfo() {
                     "useQueryString": true
                 }
             }
+            let startDate = new Date()
             let response = await fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/"
                 + country + "/"
                 + currency + "/"
@@ -47,7 +55,7 @@ function FlightsInfo() {
         setReturnDate("")
     }
 
-    return (
+    return () {
         <div className="airportinfo">
             <form onSubmit={handleSubmit}>
                 <table align='center' id='add'>
@@ -81,7 +89,7 @@ function FlightsInfo() {
             </form>
             { showQuotes ? <Quotes quotes={quotes}></Quotes> : <></>}
         </div>
-    )
+    }
 }
 
 export default FlightsInfo;
